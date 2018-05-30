@@ -6,14 +6,14 @@ class Book extends Component{
   <div className="book">
     <div className="book-top">
       <div className="book-cover" title={this.props.info.title + " by " + this.props.info.authors + " Book Cover"} style={{ width: 128, height: 190,
-        backgroundImage: `url(${this.props.info.imageLinks.thumbnail})`
+        backgroundImage: `url(${this.props.info.imageLinks && this.props.info.imageLinks.thumbnail})`
       }}>
       </div>
       <div className="book-shelf-changer" title="Change book shelf">
-        <select value={this.props.info.shelf} onChange={(evt)=> {
+        <select value={this.props.info.shelf || 'none'} onChange={(evt)=> {
           this.props.shelfChanger(this.props.info,evt.target.value)
         }}>
-          <option value="none" disabled>Move to...</option>
+          <option value="-1" disabled>Move to...</option>
           <option value="currentlyReading" title="Move book to CURRENTY READING shelf">Currently Reading</option>
           <option value="wantToRead" title="Move book to WANT TO READ shelf">Want to Read</option>
           <option value="read" title="Move book to READ shelf">Read</option>
